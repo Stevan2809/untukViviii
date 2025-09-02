@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surprise Letter</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+    }
+
+    /* --- Background Video --- */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* --- Envelope (surat) --- */
+    .envelope {
+      width: 160px;
+      height: 110px;
+      background: #f5d580;
+      border: 2px solid #b48a3a;
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    /* Segitiga penutup (flap) */
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 81px solid transparent;
+      border-right: 81px solid transparent;
+      border-bottom: 56px solid #e2b94d;
+    }
+
+    /* --- Pesan tersembunyi --- */
+    .message-box {
+      display: none;
+      text-align: center;
+      background: rgba(255,255,255,0.95);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease forwards;
+      max-width: 90%;
+    }
+
+    .message-box img {
+      width: 90%;
+      max-width: 350px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .message-box h2 {
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .message-box img {
+        max-width: 95%;
+      }
+      .message-box h2 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay loop muted playsinline class="video-background">
+    <source src="background-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Envelope -->
+  <div class="envelope" id="envelope"></div>
+
+  <!-- Message -->
+  <div class="message-box" id="messageBox">
+    <img src="foto-kamu.png" alt="Foto">
+    <h2>Thank You ❤️ See You On The Date!!</h2>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const messageBox = document.getElementById("messageBox");
+
+    envelope.addEventListener("click", () => {
+      envelope.style.display = "none";
+      messageBox.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
