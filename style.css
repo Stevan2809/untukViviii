@@ -97,5 +97,10 @@ body {
       transform: none !important;
     }
 
+#tombol-no {
+  transition: all 0.3s ease;
+}
+
   }
+
 
